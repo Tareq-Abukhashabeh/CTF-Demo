@@ -59,7 +59,16 @@
         ];
 
         // Simulated user database
-
+        let users = [
+            {
+                id: 1,
+                username: 'guest',
+                password: 'guest', // In production, this would be hashed
+                email: 'guest@ctf.com',
+                score: 0,
+                solved: []
+            }
+        ];
 
         // Sample correct flags for demo (in production, these would be on server only)
         const correctFlags = {
