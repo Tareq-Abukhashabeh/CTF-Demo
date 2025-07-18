@@ -473,3 +473,21 @@
             background: #ff4444;
             transform: translateY(-2px);
         }
+footer {
+    background: rgba(0, 0, 0, 0.9);
+    color: #00ff41;
+    text-align: center;
+    padding: 1rem;
+    font-family: 'Courier New', monospace;
+    font-size: 1rem;
+    border-top: 2px solid #00ff41;
+    margin-top: 65px;
+}
+.content {
+    flex: 1;
+}
+html, body {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
