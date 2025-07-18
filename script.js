@@ -132,15 +132,34 @@
             document.getElementById('errorMessage').style.display = 'none';
         }
 
-        function handleAuth() {
-            const username = document.getElementById('username').value.trim();
-            const password = document.getElementById('password').value;
-            const email = document.getElementById('email').value.trim();
-            
-            if (!username || !password) {
-                showError('Please fill in all required fields.');
-                return;
-            }
+if (!username || !password) {
+    showError('Please fill in all required fields.');
+    return;
+}
+
+if (!isLoginMode) {
+    // Registration-specific validation
+    if (password.length < 8) {
+        showError('Password must be at least 8 characters long.');
+        return;
+    }
+
+    if (!email) {
+        showError('Email is required for registration.');
+        return;
+    }
+
+    if (!email.endsWith('@example.com')) {
+        showError('Email must be in the format: user@example.com');
+        return;
+    }
+
+    if (users.find(u => u.username === username)) {
+        showError('Username already exists.');
+        return;
+    }
+}
+
             
             if (isLoginMode) {
                 // Login logic
