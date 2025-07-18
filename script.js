@@ -1,4 +1,4 @@
-// Secure flag storage - flags are never exposed to client
+        // Secure flag storage - flags are never exposed to client
         const SERVER_ENDPOINT = '/api'; // This would be your actual server endpoint
         
         // Authentication state
@@ -62,10 +62,9 @@
         let users = [
             {
                 id: 1,
-                username: 'admin',
-                password: 'admin123', // In production, this would be hashed
-                email: 'admin@ctf.com',
-                isAdmin: true,
+                username: 'guest',
+                password: 'guest1234', // In production, this would be hashed
+                email: 'guest@ctf.com',
                 score: 0,
                 solved: []
             }
@@ -138,34 +137,33 @@
             const password = document.getElementById('password').value;
             const email = document.getElementById('email').value.trim();
             
-if (!username || !password) {
-    showError('Please fill in all required fields.');
-    return;
-}
-
-if (!isLoginMode) {
-    // Registration-specific validation
-    if (password.length < 8) {
-        showError('Password must be at least 8 characters long.');
-        return;
-    }
-
-    if (!email) {
-        showError('Email is required for registration.');
-        return;
-    }
-
-    if (!email.endsWith('@example.com')) {
-        showError('Email must be in the format: user@example.com');
-        return;
-    }
-
-    if (users.find(u => u.username === username)) {
-        showError('Username already exists.');
-        return;
-    }
-}
-
+            if (!username || !password) {
+                showError('Please fill in all required fields.');
+                return;
+            }
+            
+            if (isLoginMode) {
+                // Login logic
+                const user = users.find(u => u.username === username && u.password === password);
+                if (user) {
+                    currentUser = user;
+                    userSolved = user.solved || [];
+                    userScoreValue = user.score || 0;
+                    showMainPlatform();
+                } else {
+                    showError('Invalid username or password.');
+                }
+            } else {
+                // Registration logic
+                if (!email) {
+                    showError('Email is required for registration.');
+                    return;
+                }
+                
+                if (users.find(u => u.username === username)) {
+                    showError('Username already exists.');
+                    return;
+                }
                 
                 const newUser = {
                     id: users.length + 1,
