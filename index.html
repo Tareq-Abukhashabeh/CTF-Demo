@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RedSec CTF Platform</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="particles" id="particles"></div>
+    
+    <div class="header">
+        <h1>RedSec CTF Platform</h1>
+        <div class="user-info" id="userInfo" style="display: none;">
+            <span id="welcomeMessage">Welcome, User!</span>
+            <button class="admin-toggle" id="adminToggle" onclick="toggleAdmin()" style="display: none;">Admin Panel</button>
+            <button class="logout-btn" onclick="logout()">Logout</button>
+        </div>
+    </div>
+
+    <!-- Authentication Form -->
+    <div class="auth-container" id="authContainer">
+        <div class="auth-form">
+            <div class="auth-form-content">
+                <h2 id="authTitle">Login</h2>
+                <div class="error-message" id="errorMessage"></div>
+                <div class="success-message" id="successMessage"></div>
+                
+                <div class="form-group">
+                    <label for="username">Username</label>
+                    <input type="text" id="username" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input type="password" id="password" required>
+                </div>
+                
+                <div class="form-group" id="emailGroup" style="display: none;">
+                    <label for="email">Email</label>
+                    <input type="email" id="email">
+                </div>
+                
+                <button class="auth-btn" id="authBtn" onclick="handleAuth()">Login</button>
+                
+                <p>
+                    <span id="authToggleText">Don't have an account?</span>
+                    <span class="auth-toggle" onclick="toggleAuthMode()">Register here</span>
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Platform -->
+    <div class="container" id="mainContainer" style="display: none;">
+        <div class="admin-panel" id="adminPanel">
+            <h2>🔧 Admin Panel</h2>
+            <div class="admin-form">
+                <input type="text" id="adminTitle" placeholder="Challenge Title">
+                <textarea id="adminDescription" placeholder="Challenge Description"></textarea>
+                <textarea id="adminCode" placeholder="Challenge Code/Content"></textarea>
+                <input type="text" id="adminFlag" placeholder="Flag (will be securely stored)">
+                <select id="adminDifficulty">
+                    <option value="easy">Easy</option>
+                    <option value="medium">Medium</option>
+                    <option value="hard">Hard</option>
+                </select>
+                <input type="number" id="adminPoints" placeholder="Points" value="100">
+                <button class="submit-btn" onclick="addChallenge()">Add Challenge</button>
+            </div>
+        </div>
+
+        <div class="stats">
+            <div class="stat-card">
+                <h3>Total Challenges</h3>
+                <div style="font-size: 2rem; color: #00ff41; margin-top: 0.5rem;" id="totalChallenges">0</div>
+            </div>
+            <div class="stat-card">
+                <h3>Solved by You</h3>
+                <div style="font-size: 2rem; color: #4CAF50; margin-top: 0.5rem;" id="solvedChallenges">0</div>
+            </div>
+            <div class="stat-card">
+                <h3>Your Score</h3>
+                <div style="font-size: 2rem; color: #FF9800; margin-top: 0.5rem;" id="userScore">0</div>
+            </div>
+        </div>
+
+        <div class="leaderboard">
+            <h2>🏆 Leaderboard</h2>
+            <div id="leaderboardContent">
+                <!-- Leaderboard will be populated dynamically -->
+            </div>
+        </div>
+
+        <div class="challenges" id="challenges">
+            <!-- Challenges will be populated here -->
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
