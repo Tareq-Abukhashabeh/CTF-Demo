@@ -62,9 +62,10 @@
         let users = [
             {
                 id: 1,
-                username: 'guest',
-                password: 'guest1234', // In production, this would be hashed
-                email: 'guest@ctf.com',
+                username: 'redsec',
+                password: 'redsec1234', // In production, this would be hashed
+                email: 'redsec@ctf.com',
+                isAdmin: True,
                 score: 0,
                 solved: []
             }
