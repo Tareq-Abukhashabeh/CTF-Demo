@@ -65,7 +65,6 @@
                 username: 'redsec',
                 password: 'redsec1234', // In production, this would be hashed
                 email: 'redsec@ctf.com',
-                isAdmin: True,
                 score: 0,
                 solved: []
             }
