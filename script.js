@@ -1,4 +1,4 @@
-        // Secure flag storage - flags are never exposed to client
+// Secure flag storage - flags are never exposed to client
         const SERVER_ENDPOINT = '/api'; // This would be your actual server endpoint
         
         // Authentication state
@@ -62,9 +62,10 @@
         let users = [
             {
                 id: 1,
-                username: 'guest',
-                password: 'guest', // In production, this would be hashed
-                email: 'guest@ctf.com',
+                username: 'admin',
+                password: 'admin123', // In production, this would be hashed
+                email: 'admin@ctf.com',
+                isAdmin: true,
                 score: 0,
                 solved: []
             }
@@ -132,6 +133,11 @@
             document.getElementById('errorMessage').style.display = 'none';
         }
 
+        function handleAuth() {
+            const username = document.getElementById('username').value.trim();
+            const password = document.getElementById('password').value;
+            const email = document.getElementById('email').value.trim();
+            
 if (!username || !password) {
     showError('Please fill in all required fields.');
     return;
@@ -160,29 +166,6 @@ if (!isLoginMode) {
     }
 }
 
-            
-            if (isLoginMode) {
-                // Login logic
-                const user = users.find(u => u.username === username && u.password === password);
-                if (user) {
-                    currentUser = user;
-                    userSolved = user.solved || [];
-                    userScoreValue = user.score || 0;
-                    showMainPlatform();
-                } else {
-                    showError('Invalid username or password.');
-                }
-            } else {
-                // Registration logic
-                if (!email) {
-                    showError('Email is required for registration.');
-                    return;
-                }
-                
-                if (users.find(u => u.username === username)) {
-                    showError('Username already exists.');
-                    return;
-                }
                 
                 const newUser = {
                     id: users.length + 1,
